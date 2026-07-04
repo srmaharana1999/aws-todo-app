@@ -8,6 +8,6 @@ router.post("/", createATodo);
 router.get("/", getAllTodos);
 router.get("/:id", getTodoDetails);
 router.patch("/:id", updateATodo);
-router.delete("/", deleteATodo);
+router.delete("/:id", deleteATodo);
 
 export default router;
