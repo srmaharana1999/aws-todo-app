@@ -39,10 +39,10 @@
     "skipLibCheck": true
   },
   "include": [
-    "src",
-    "src/prisma.config.ts"
+    "src"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "prisma.config.ts"
   ]
 }

@@ -186,7 +186,7 @@ export type TodoGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   dueDate: Date
-  completedAt: Date
+  completedAt: Date | null
   category: string | null
   _count: TodoCountAggregateOutputType | null
   _min: TodoMinAggregateOutputType | null
@@ -220,7 +220,7 @@ export type TodoWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Todo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Todo"> | Date | string
   dueDate?: Prisma.DateTimeFilter<"Todo"> | Date | string
-  completedAt?: Prisma.DateTimeFilter<"Todo"> | Date | string
+  completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
   category?: Prisma.StringNullableFilter<"Todo"> | string | null
 }
 
@@ -233,7 +233,7 @@ export type TodoOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   dueDate?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
@@ -249,7 +249,7 @@ export type TodoWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Todo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Todo"> | Date | string
   dueDate?: Prisma.DateTimeFilter<"Todo"> | Date | string
-  completedAt?: Prisma.DateTimeFilter<"Todo"> | Date | string
+  completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
   category?: Prisma.StringNullableFilter<"Todo"> | string | null
 }, "id">
 
@@ -262,7 +262,7 @@ export type TodoOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   dueDate?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TodoCountOrderByAggregateInput
   _max?: Prisma.TodoMaxOrderByAggregateInput
@@ -281,7 +281,7 @@ export type TodoScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Todo"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Todo"> | Date | string
   dueDate?: Prisma.DateTimeWithAggregatesFilter<"Todo"> | Date | string
-  completedAt?: Prisma.DateTimeWithAggregatesFilter<"Todo"> | Date | string
+  completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Todo"> | Date | string | null
   category?: Prisma.StringNullableWithAggregatesFilter<"Todo"> | string | null
 }
 
@@ -294,7 +294,7 @@ export type TodoCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dueDate: Date | string
-  completedAt: Date | string
+  completedAt?: Date | string | null
   category?: string | null
 }
 
@@ -307,7 +307,7 @@ export type TodoUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dueDate: Date | string
-  completedAt: Date | string
+  completedAt?: Date | string | null
   category?: string | null
 }
 
@@ -320,7 +320,7 @@ export type TodoUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -333,7 +333,7 @@ export type TodoUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -346,7 +346,7 @@ export type TodoCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   dueDate: Date | string
-  completedAt: Date | string
+  completedAt?: Date | string | null
   category?: string | null
 }
 
@@ -359,7 +359,7 @@ export type TodoUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -372,7 +372,7 @@ export type TodoUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  completedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -429,6 +429,10 @@ export type EnumPriorityStatusFieldUpdateOperationsInput = {
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
 }
 
 export type NullableStringFieldUpdateOperationsInput = {
@@ -503,7 +507,7 @@ export type $TodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdAt: Date
     updatedAt: Date
     dueDate: Date
-    completedAt: Date
+    completedAt: Date | null
     category: string | null
   }, ExtArgs["result"]["todo"]>
   composites: {}

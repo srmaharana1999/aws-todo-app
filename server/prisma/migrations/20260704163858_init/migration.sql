@@ -14,7 +14,7 @@ CREATE TABLE "Todo" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "dueDate" TIMESTAMP(3) NOT NULL,
-    "completedAt" TIMESTAMP(3) NOT NULL,
+    "completedAt" TIMESTAMP(3),
     "category" TEXT,
 
     CONSTRAINT "Todo_pkey" PRIMARY KEY ("id")
