@@ -33,16 +33,16 @@ const getTodoDetails = async (req: Request, res: Response) => {
     const todoId = req.params.id;
 
     if (!todoId) {
-        return new AppError("Todo ID is required", 400)
+        throw new AppError("Todo ID is required", 400)
     }
 
     if (Array.isArray(todoId)) {
-        return new AppError("Todo ID must be unique", 400)
+        throw new AppError("Todo ID must be unique", 400)
     }
     const result = await prismaClient.todo.findUnique({ where: { id: todoId } });
 
     if (!result) {
-        return new AppError("Todo not found", 404)
+        throw new AppError("Todo not found", 404)
     }
     res.status(200).json({ result });
 }
@@ -53,11 +53,11 @@ const updateATodo = async (req: Request, res: Response) => {
     const { title, description, status, priority, dueDate, category } = req.body;
 
     if (!todoId) {
-        return new AppError("Todo ID is required", 400)
+        throw new AppError("Todo ID is required", 400)
     }
 
     if (Array.isArray(todoId)) {
-        return new AppError("Todo ID must be unique", 400)
+        throw new AppError("Todo ID must be unique", 400)
     }
 
     const result = await prismaClient.todo.update({
@@ -79,14 +79,14 @@ const updateATodo = async (req: Request, res: Response) => {
 
 
 const deleteATodo = async (req: Request, res: Response) => {
-    const { id: todoId } = req.body;
+    const todoId = req.params.id;
 
     if (!todoId) {
-        return new AppError("Todo ID is required", 400)
+        throw new AppError("Todo ID is required", 400)
     }
 
     if (Array.isArray(todoId)) {
-        return new AppError("   Todo ID must be unique", 400)
+        throw new AppError("Todo ID must be unique", 400)
     }
 
     const result = await prismaClient.todo.delete({
