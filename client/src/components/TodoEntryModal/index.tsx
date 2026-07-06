@@ -7,11 +7,10 @@ const TodoEntryModal = () => {
 
   return (
     <div
-      className={`absolute z-10 inset-0 ${
-        showModal
-          ? "backdrop-blur-sm pointer-events-auto"
-          : "pointer-events-none"
-      } transition-transform ease-in-out duration-700`}
+      className={`absolute z-10 inset-0 ${showModal
+        ? "backdrop-blur-sm pointer-events-auto"
+        : "pointer-events-none"
+        } transition-transform ease-in-out duration-700`}
     >
       <button
         onClick={() => setShowModal((pre) => !pre)}
@@ -19,14 +18,13 @@ const TodoEntryModal = () => {
       >
         <FaPlus
           size={24}
-          className={`transition-transform duration-300 ${
-            showModal ? "rotate-45 text-red-500" : "text-white"
-          }`}
+          className={`transition-transform duration-300 ${showModal ? "rotate-45 text-red-500" : "text-white"
+            }`}
         />
       </button>
       {showModal && (
         <div className="inset-0 absolute flex items-center justify-center pointer-events-auto">
-          <TodoEntryForm />
+          <TodoEntryForm onClose={() => setShowModal(false)} />
         </div>
       )}
     </div>

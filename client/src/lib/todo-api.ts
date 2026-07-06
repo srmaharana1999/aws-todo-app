@@ -24,9 +24,9 @@ export const todoApi = {
       method: "POST",
       body: JSON.stringify(data),
     }),
-  updateTodo: async (id: string, data: TodoFormTypes) =>
+  updateTodo: async (id: string, data: Partial<TodoFormTypes>) =>
     api<TodoFormTypes>(`${BASE_URL}/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       body: JSON.stringify(data),
     }),
   deleteTodo: async (id: string) =>
