@@ -28,6 +28,18 @@ const TextField = <T extends FieldValues>(props: TextFieldProps<T>) => {
   } = props;
   const { field, fieldState } = useController(props);
 
+  // datetime-local inputs require "YYYY-MM-DDTHH:mm" string format.
+  // When react-hook-form holds a Date object (e.g. from defaultValues),
+  // we must convert it explicitly — otherwise the input shows blank/today.
+  const getInputValue = () => {
+    if (type === "datetime-local" && (field.value as unknown) instanceof Date) {
+      const d = field.value;
+      const pad = (n: number) => String(n).padStart(2, "0");
+      return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+    return field.value;
+  };
+
   return (
     <div className={`w-full text-xs flex flex-col gap-1 ${className ?? ""}`}>
       {label && <label className="font-medium">{label}</label>}
@@ -35,6 +47,7 @@ const TextField = <T extends FieldValues>(props: TextFieldProps<T>) => {
 
       <input
         {...field}
+        value={getInputValue()}
         type={type}
         step={step}
         placeholder={placeholder ?? label}

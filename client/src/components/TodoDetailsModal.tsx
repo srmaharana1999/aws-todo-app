@@ -8,10 +8,18 @@ interface TodoDetailsProps {
   onClose: () => void;
 }
 
+const dateFormater = (s: string) => {
+  const d = new Date(s);
+  // if (!isNaN(d.getTime())) return "Invalid Date";
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 const TodoDetailsModal = ({ open, onClose, todoDetails }: TodoDetailsProps) => {
   if (!open || !todoDetails) return null;
-  const createdDate = todoDetails.createdAt.split("T")[0];
-  const dueDate = todoDetails.dueDate.split("T")[0];
+  const createdDate = dateFormater(todoDetails.createdAt);
+  const dueDate = dateFormater(todoDetails.dueDate);
+  const updatedAt = dateFormater(todoDetails.updatedAt);
   return (
     <div className="absolute inset-0 z-50 backdrop-blur-md flex justify-center items-center">
       <div className="max-w-lg w-full bg-white rounded-xl border-2 border-blue-500">
@@ -45,7 +53,7 @@ const TodoDetailsModal = ({ open, onClose, todoDetails }: TodoDetailsProps) => {
             <FieldView label="Priority" value={todoDetails.priority} />
             <FieldView label="Due Date" value={dueDate} />
             <FieldView label="Created At" value={createdDate} />
-            <FieldView label="Updated At" value={todoDetails.updatedAt.split("T")[0]} />
+            <FieldView label="Updated At" value={updatedAt} />
           </div>
         </div>
       </div>
@@ -59,7 +67,7 @@ function FieldView({ label, value }: { label: string; value: string }) {
       <strong className="text-xs p-2 text-white bg-blue-500 capitalize">
         {label}
       </strong>
-      <span className="">{value ? value : "NA"}</span>
+      <span className="text-xs font-medium">{value ? value : "NA"}</span>
     </div>
   );
 }
