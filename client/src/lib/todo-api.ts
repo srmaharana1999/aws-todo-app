@@ -1,7 +1,7 @@
 import type { TodoFormTypes } from "../components/TodoEntryModal/todo.schema";
 import { api } from "./api";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL ?? "/api/todos";
+const BASE_URL = import.meta.env.VITE_BASE_URL ?? "http://localhost:5000/api/todos";
 
 export interface TodoType {
   category: string;
