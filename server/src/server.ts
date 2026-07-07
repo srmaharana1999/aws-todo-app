@@ -1,10 +1,10 @@
 import "dotenv/config";
 import { prismaClient } from "./lib/prisma";
 import app from "./app";
+import { config } from "./config";
 
 
-const PORT = process.env.PORT || 3000;
-
+const PORT = config.port;
 
 
 (async function () {
