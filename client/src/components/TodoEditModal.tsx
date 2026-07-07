@@ -15,7 +15,7 @@ import { TbLoader3 } from "react-icons/tb";
 interface TodoEditForm {
     open: boolean;
     editValues: TodoFormTypes;
-    task: TodoType;
+    task: TodoType | null;
     onClose: () => void
 }
 

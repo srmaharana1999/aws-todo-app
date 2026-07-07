@@ -50,5 +50,5 @@ export const PRIORITY_OPTIONS = [
 export const STATUS_OPTIONS = [
   { label: "Todo", value: "TODO" },
   { label: "In Progress", value: "IN_PROGRESS" },
-  { label: "Completed", value: "COMPLETED" },
+  { label: "Done", value: "DONE" },
 ];

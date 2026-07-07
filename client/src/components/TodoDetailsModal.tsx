@@ -45,7 +45,7 @@ const TodoDetailsModal = ({ open, onClose, todoDetails }: TodoDetailsProps) => {
             <FieldView label="Priority" value={todoDetails.priority} />
             <FieldView label="Due Date" value={dueDate} />
             <FieldView label="Created At" value={createdDate} />
-            <FieldView label="Updated At" value="" />
+            <FieldView label="Updated At" value={todoDetails.updatedAt.split("T")[0]} />
           </div>
         </div>
       </div>

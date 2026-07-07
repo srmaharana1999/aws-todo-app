@@ -48,6 +48,7 @@ const Dashboard = () => {
     try {
       await todoApi.deleteTodo(id);
       toast.success("Task Successfully Deleted")
+      setTodos((prev) => prev.filter((t) => t.id !== id));
     } catch (error) {
       if (error instanceof Error) {
         console.error(error.message);
@@ -56,8 +57,6 @@ const Dashboard = () => {
         console.error("Error occurred in Deleting todo", error);
         toast.error("Something went wrong");
       }
-    } finally {
-      setLoading(false);
     }
   };
 
