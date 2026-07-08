@@ -7,7 +7,6 @@ import TextArea from "../Fields/TextArea";
 import SelectOptions from "../Fields/SelectOptions";
 import { PRIORITY_OPTIONS, STATUS_OPTIONS, TODO_CATEGORIES } from "./TodoEntryModal/constant";
 import { todoApi, type TodoType } from "../lib/todo-api";
-import { BiSave, BiXCircle } from "react-icons/bi";
 import { GrUpdate } from "react-icons/gr";
 import { IoCloseCircle } from "react-icons/io5";
 import toast from "react-hot-toast";
