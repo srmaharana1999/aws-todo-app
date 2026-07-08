@@ -4,7 +4,12 @@
   "description": "",
   "main": "./src/server.ts",
   "scripts": {
-    "dev": "tsx --watch ./src/server.ts",
+    "dev": "tsx watch ./src/server.ts",
+    "build": "tsc",
+    "start": "node ./dist/server.js",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "prisma:generate": "prisma generate",
+    "prisma:deploy": "prisma migrate deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -1,8 +1,13 @@
 import { Router } from "express";
-import { createATodo, deleteATodo, getAllTodos, getTodoDetails, updateATodo } from "../controller/todo.controller";
+import {
+  createATodo,
+  deleteATodo,
+  getAllTodos,
+  getTodoDetails,
+  updateATodo,
+} from "../controller/todo.controller.js";
 
 const router = Router();
-
 
 router.post("/", createATodo);
 router.get("/", getAllTodos);
