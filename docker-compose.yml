@@ -8,7 +8,7 @@ services:
     container_name: todo-server
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?schema=public&?sslmode=no-verify
+      DATABASE_URL: postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=no-verify&schema=public
       PORT: 3000
       NODE_ENV: production
     networks:
