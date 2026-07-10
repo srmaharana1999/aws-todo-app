@@ -16,10 +16,11 @@ jobs:
       - name: Deploy Via SSH
         uses: appleboy/ssh-action@v1.0.3
         with: 
-          host: 16.112.100.244
-          username: ubuntu
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_GIT_ACTIONS_PVT_KEY }}
           port: 22
+          passphrase: ${{secrets.EC2_SSH_PASSPHRASE}}
           script: |
             cd /home/ubuntu/aws-todo-app
             git pull origin main
